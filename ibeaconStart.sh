@@ -20,11 +20,13 @@ function headr
 #custom iBecon or beacon and the second is the value of the packet
 function BLEchain
 {
-	echo "ble hehehe"
+	echo "iBeacon activation..."
+	sudo hcitool -i hci0 cmd 0x08 0x0008 1E 02 01 1A 1A FF 4C 00 02 15 FB 9F C1 07 09 91 4B 43 80 84 1D 9B B2 ED EE 1A 00 00 00 00 C8
 }
 function helpI
-{clear
-	echo
+{
+	clear
+	echo ""
 	echo "HEEELP!!"
 }
 function menu
@@ -42,33 +44,61 @@ function menu
 		headr $bt_pres $bt_stat
 		echo "IBeacon activation..."
 		sudo hcitool -i hci0 cmd 0x08 0x0008 1E 02 01 1A 1A FF 4C 00 02 15 FB 9F C1 07 09 91 4B 43 80 84 1D 9B B2 ED EE 1A 00 00 00 00 C8
+		echo "press a key to continue..."
+		read qwe
+		headr $bt_pres $bt_stat
+		menu
 		;;
 		2)
+		headr $bt_pres $bt_stat
 		BLEchain ib
+		echo "press a key to continue..."
+		read qwe
+		headr $bt_pres $bt_stat
+		menu
 		;;
 		3)
+		headr $bt_pres $bt_stat
 		BLEchain b
+		echo "press a key to continue..."
+		read qwe
+		headr $bt_pres $bt_stat
+		menu
 		;;
 		4)
 		sudo hciconfig hci0 up
+		sudo hciconfig hci0 leadv 3
+		sudo hciconfig hci0 noscan
 		bt_stat=`hciconfig|head -3|tail -1|grep "UP\|DOWN"`
+		echo "press a key to continue..."
+		read qwe
 		headr $bt_pres $bt_stat
 		menu
 		;;
 		5)
 		sudo hciconfig hci0 down
 		bt_stat=`hciconfig|head -3|tail -1|grep "UP\|DOWN"`
+		echo "press a key to continue..."
+		read qwe
 		headr $bt_pres $bt_stat
 		menu
 		;;
 		6)
 		helpI
+		echo "press a key to continue..."
+		read qwe
+		headr $bt_pres $bt_stat
+		menu
 		;;
 		7)
 		exit 0
 		;;
 		*)
 		echo "Please select from 1 to 6"
+		echo "press a key to continue..."
+		read qwe
+		headr $bt_pres $bt_stat
+		menu
 		;;
 	esac
 }
@@ -91,22 +121,6 @@ else
 	bt_pres="OK"
 	bt_stat=`hciconfig|head -3|tail -1|grep "UP\|DOWN"`
 	headr $bt_pres $bt_stat
+	menu
 fi
-echo $bt_stat
-if [[ $bt_stat != "UP" ]]; then
-	echo "Trying to enble BLE and ibeacon"
-	sudo hciconfig hci0 up
-	sudo hciconfig hci0 leadv 3
-	sudo hciconfig hci0 noscan
-	sudo hcitool -i hci0 cmd 0x08 0x0008 1E 02 01 1A 1A FF 4C 00 02 15 FB 9F C1 07 09 91 4B 43 80 84 1D 9B B2 ED EE 1A 00 00 00 00 C8
-else
-	echo "BLE is ready, do you want to enable an ibeacon? (y/n)"
-	read iben
-	if [[ $iben = "y" ]]; then
-		sudo hciconfig hci0 leadv 3
-		sudo hciconfig hci0 noscan
-		sudo hcitool -i hci0 cmd 0x08 0x0008 1E 02 01 1A 1A FF 4C 00 02 15 FB 9F C1 07 09 91 4B 43 80 84 1D 9B B2 ED EE 1A 00 00 00 00 C8
-	else
-		echo "no changes were make"
-	fi
-fi
+
