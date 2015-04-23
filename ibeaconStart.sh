@@ -39,7 +39,7 @@ function menu
 	echo "6. Help"
 	echo "7. Exit"
 	read opt
-	case opt in
+	case $opt in
 		1)
 		headr $bt_pres $bt_stat
 		echo "IBeacon activation..."
