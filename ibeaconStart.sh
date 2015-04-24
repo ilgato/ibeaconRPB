@@ -39,17 +39,22 @@ function BLEchain
 function helpI
 {
 	headr $bt_pres $bt_stat
-	echo "Select on of the options from the menu:"
+	echo ""
+	echo "Select one of the options from the menu:"
 	echo "1. If possible, the program will start sending a default iBeacon with UUID:"
 	echo "FB 9F C1 07 09 91 4B 43 80 84 1D 9B B2 ED EE 1A"
+	echo ""
 	echo "2. An iBeacon will start being advertized but with an user defined UUID, please"
 	echo "use the correct format, 16 bytes separated by a single space."
+	echo ""
 	echo "3. Still not functional, for now it just do the same as 2."
+	echo ""
 	echo "4. sets the bluetooth state to UP."
+	echo ""
 	echo "5. Sets the bluetooth state to DOWN, notice that in most cases the beacon will."
 	echo "remain active even if the bluetooth state is set to DOWN."
 	echo ""
-	echo "Press a key to go back to the menu"
+	echo "Press a key to go back to the menu..."
 }
 function menu
 {
@@ -107,8 +112,6 @@ function menu
 		;;
 		6)
 		helpI
-		echo "press a key to continue..."
-		read qwe
 		headr $bt_pres $bt_stat
 		menu
 		;;
