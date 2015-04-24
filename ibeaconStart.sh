@@ -21,7 +21,7 @@ function headr
 function BLEchain
 {
 	echo "Please insert a custom UUID to be transmited (16 bytes separated by a space inbetween, like:"
-	"00 01 02 03 04 05 06 07 08 09 0A 0B 0C 0D 0E 0F"
+	echo "00 01 02 03 04 05 06 07 08 09 0A 0B 0C 0D 0E 0F"
 	read uid
 	uidsize=${#uid}
 	if [[ $uidsize = 47 ]]; then
