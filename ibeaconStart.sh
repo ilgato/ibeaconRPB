@@ -20,8 +20,21 @@ function headr
 #custom iBecon or beacon and the second is the value of the packet
 function BLEchain
 {
-	echo "iBeacon activation..."
-	sudo hcitool -i hci0 cmd 0x08 0x0008 1E 02 01 1A 1A FF 4C 00 02 15 FB 9F C1 07 09 91 4B 43 80 84 1D 9B B2 ED EE 1A 00 00 00 00 C8
+	echo "Please insert a custom UUID to be transmited (16 bytes separated by a space inbetween, like:"
+	"00 01 02 03 04 05 06 07 08 09 0A 0B 0C 0D 0E 0F"
+	read uid
+	uidsize=${#uid}
+	if [[ $uidsize = 47 ]]; then
+	local p1="0x08 0x0008 1E 02 01 1A 1A FF 4C 00 02 15 "
+	local p2=" 00 00 00 00 C8"
+	sudo hcitool -i hci0 cmd $p1 $uid $p2
+	else
+		echo "wrong input, please try again"
+		echo "press a key to continue..."
+		read qwe
+		headr $bt_pres $bt_stat
+		BLEchain ib
+	fi
 }
 function helpI
 {
