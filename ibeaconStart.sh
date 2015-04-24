@@ -55,6 +55,7 @@ function helpI
 	echo "remain active even if the bluetooth state is set to DOWN."
 	echo ""
 	echo "Press a key to go back to the menu..."
+	read qwe
 }
 function menu
 {
