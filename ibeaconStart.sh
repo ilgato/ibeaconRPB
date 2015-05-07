@@ -71,7 +71,7 @@ function menu
 		1)
 		headr $bt_pres $bt_stat
 		echo "IBeacon activation..."
-		sudo hcitool -i hci0 cmd 0x08 0x0008 1E 02 01 1A 1A FF 4C 00 02 15 FB 9F C1 07 09 91 4B 43 80 84 1D 9B B2 ED EE 1A 00 00 00 00 C8
+		sudo hcitool -i hci0 cmd 0x08 0x0008 1E 02 01 1A 1A FF 4C 00 02 15 DD 22 AA 44 AA 22 4B 43 80 84 1D 9B B2 ED EE 1A 00 00 00 00 C8
 		echo "press a key to continue..."
 		read qwe
 		headr $bt_pres $bt_stat
